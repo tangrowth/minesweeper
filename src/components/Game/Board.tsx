@@ -1,4 +1,3 @@
-// Board.tsx
 import React, { useEffect, useState } from "react";
 import Cell from "./Cell";
 
@@ -20,7 +19,7 @@ const Board: React.FC<BoardProps> = ({ cellRows, cellCols, bombs }) => {
 
   useEffect(() => {
     const initialCells = Array.from({ length: cellRows * cellCols }, () => ({
-      isOpened: true,
+      isOpened: false,
       isBomb: false,
       isFragged: false,
       count: 0,
@@ -35,6 +34,14 @@ const Board: React.FC<BoardProps> = ({ cellRows, cellCols, bombs }) => {
     setCells(initialCells);
   }, [cellRows, cellCols, bombs]);
 
+  const toggleCell = (index: number) => {
+    setCells((prevCells) => {
+      const newCells = [...prevCells];
+      newCells[index] = { ...newCells[index], isOpened: true };
+      return newCells;
+    });
+  };
+
   const renderCells = () => {
     return cells.map((cell, index) => (
       <Cell
@@ -43,6 +50,7 @@ const Board: React.FC<BoardProps> = ({ cellRows, cellCols, bombs }) => {
         isBomb={cell.isBomb}
         isFragged={cell.isFragged}
         count={cell.count}
+        onCellClick={() => toggleCell(index)}
       />
     ));
   };

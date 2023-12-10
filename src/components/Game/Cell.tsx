@@ -6,11 +6,18 @@ interface CellProps {
   isBomb: boolean;
   isFragged: boolean;
   count: number;
+  onCellClick: () => void;
 }
 
-const Cell: React.FC<CellProps> = ({ isOpend, isBomb, isFragged, count }) => {
+const Cell: React.FC<CellProps> = ({
+  isOpend,
+  isBomb,
+  isFragged,
+  count,
+  onCellClick,
+}) => {
   return (
-    <div className="Cell">
+    <div className="Cell" onClick={onCellClick}>
       <span>
         {isOpend && !isBomb && count > 0 && <span>{count}</span>}
         {isOpend && isBomb && <span>💣</span>}
