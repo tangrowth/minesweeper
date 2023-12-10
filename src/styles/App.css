@@ -1,0 +1,18 @@
+.Cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.Cell.opened {
+  background-color: #eee;
+}
+
+.Board {
+  display: grid;
+  grid-template-columns: repeat(18, 30px);
+}
